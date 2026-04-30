@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>出会いアプリ、3つだけ正直に使ってみた話｜ゆいのブログ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#f9e4ec;--pink-mid:#f0b8cc;--pink-deep:#d4708a;
+  --mint:#e8f5ef;--mint-mid:#b2dcc6;--mint-deep:#5aaa80;
+  --yellow:#fdf8e8;--cream:#fdfaf5;--text:#333;--text-light:#888;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;color:var(--text);font-size:14px;line-height:1.9}
+.wrap{max-width:430px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* ヘッダー */
+.blog-header{background:linear-gradient(135deg,var(--pink) 0%,#fff8fb 60%,var(--mint) 100%);padding:28px 20px 20px;text-align:center;border-bottom:1.5px dashed var(--pink-mid);position:relative}
+.blog-header::before{content:"🌸";position:absolute;top:14px;left:18px;font-size:18px;opacity:.6}
+.blog-header::after{content:"🍀";position:absolute;top:14px;right:18px;font-size:18px;opacity:.6}
+.blog-name{font-size:11px;color:var(--pink-deep);letter-spacing:.2em;font-weight:500;margin-bottom:8px}
+.blog-title{font-size:17px;font-weight:700;line-height:1.65;color:#2a2a2a}
+.blog-title span{background:linear-gradient(transparent 65%,rgba(240,184,204,.5) 65%)}
+.blog-meta{margin-top:12px;font-size:11px;color:var(--text-light);display:flex;justify-content:center;align-items:center;gap:10px}
+.blog-meta .dot{color:var(--pink-mid)}
+
+/* 本文 */
+.body{padding:22px 20px}
+.intro{font-size:14px;line-height:2;color:#444;margin-bottom:6px}
+.intro-note{display:inline-block;background:var(--yellow);border-left:3px solid #f5d060;padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;color:#666;margin:10px 0 20px;line-height:1.8}
+.section-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--text-light);letter-spacing:.15em;margin:28px 0 12px}
+.section-label::before,.section-label::after{content:"";flex:1;height:1px;background:#eee}
+
+/* カード */
+.card{border-radius:16px;padding:18px;margin-bottom:16px;border:1.5px solid transparent;position:relative}
+.card.pink{background:linear-gradient(135deg,#fffafc 0%,var(--pink) 100%);border-color:var(--pink-mid)}
+.card.mint{background:linear-gradient(135deg,#f6fdf9 0%,var(--mint) 100%);border-color:var(--mint-mid)}
+.card.yellow{background:linear-gradient(135deg,#fffef5 0%,var(--yellow) 100%);border-color:#f0d878}
+.card-num{position:absolute;top:-10px;left:18px;background:#fff;border:1.5px solid #eee;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;color:var(--text-light);letter-spacing:.1em}
+.card-tags{margin:6px 0 8px;display:flex;flex-wrap:wrap;gap:5px}
+.ctag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+.ctag.p{background:var(--pink-mid);color:#7a2040}
+.ctag.m{background:var(--mint-mid);color:#1e5c3a}
+.ctag.y{background:#f0d878;color:#5c4a00}
+.ctag.g{background:#e8e8e8;color:#555}
+.card-name{font-size:16px;font-weight:700;color:#222;margin-bottom:10px}
+.card-body{font-size:13.5px;line-height:1.95;color:#444}
+.card-body p{margin-bottom:6px}
+.stars{display:flex;align-items:center;gap:4px;margin:10px 0}
+.stars .s{color:#f5c842;font-size:15px}
+.stars .s.off{color:#ddd}
+.stars .slabel{font-size:11px;color:var(--text-light);margin-left:4px}
+.btn{display:block;text-align:center;padding:11px 10px;border-radius:25px;text-decoration:none;font-size:13px;font-weight:700;margin-top:14px;letter-spacing:.03em}
+.btn.pink-btn{background:linear-gradient(135deg,#f0839a,#d4507a);color:#fff}
+.btn.mint-btn{background:linear-gradient(135deg,#6dbf90,#3a9a65);color:#fff}
+.btn.gray-btn{background:#f0ece8;color:#555;border:1px solid #ddd}
+.handwrite{font-size:12px;color:var(--pink-deep);margin:4px 0 0;opacity:.8}
+
+/* まとめ */
+.summary{background:linear-gradient(135deg,var(--pink) 0%,#fff 50%,var(--mint) 100%);border-radius:16px;padding:18px;margin:24px 0;border:1.5px dashed var(--pink-mid)}
+.summary-title{font-size:13px;font-weight:700;color:var(--pink-deep);margin-bottom:10px;text-align:center}
+.summary-row{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#444;margin-bottom:6px;line-height:1.7}
+
+.footer-note{font-size:11.5px;color:#aaa;text-align:center;padding:16px 20px 28px;line-height:1.8;border-top:1px dashed #eee}
+.footer-emoji{font-size:18px;margin-bottom:6px}
+
+/* ==============================
+   管理画面
+============================== */
+#admin-screen{display:none;min-height:100vh;background:#1a1a2e;color:#fff;font-family:'Noto Sans JP',sans-serif}
+.admin-header{background:linear-gradient(135deg,#e8607a,#c94070);padding:20px;text-align:center}
+.admin-header h2{font-size:16px;font-weight:700;margin-bottom:4px}
+.admin-header p{font-size:12px;opacity:.85}
+.admin-body{padding:16px}
+.admin-note{background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;font-size:12px;color:#ccc;margin-bottom:20px;line-height:1.8}
+.admin-note strong{color:#f7c0d0}
+
+/* GitHubトークン入力 */
+.token-section{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;margin-bottom:20px}
+.token-section h3{font-size:13px;font-weight:700;color:#f7c0d0;margin-bottom:8px}
+.token-section p{font-size:12px;color:#aaa;margin-bottom:10px;line-height:1.7}
+.token-input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;font-family:'Noto Sans JP',sans-serif;outline:none}
+.token-input:focus{border-color:#f0839a}
+.token-save-btn{margin-top:8px;background:rgba(240,131,154,.2);border:1px solid #f0839a;color:#f7c0d0;font-size:12px;padding:8px 16px;border-radius:20px;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+
+.admin-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;margin-bottom:14px}
+.admin-card-title{font-size:14px;font-weight:700;color:#f7c0d0;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.admin-field{margin-bottom:12px}
+.admin-field label{display:block;font-size:11px;color:#aaa;margin-bottom:4px;letter-spacing:.05em}
+.admin-field input,.admin-field textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;font-family:'Noto Sans JP',sans-serif;outline:none;resize:vertical}
+.admin-field input:focus,.admin-field textarea:focus{border-color:#f0839a}
+.admin-save-btn{width:100%;margin-top:6px;background:linear-gradient(135deg,#e8607a,#c94070);color:#fff;font-size:14px;font-weight:700;padding:14px;border-radius:25px;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+.admin-save-btn:active{opacity:.85}
+.admin-msg{text-align:center;font-size:13px;margin-top:10px;min-height:20px;color:#6ee7b7}
+.admin-err{color:#f87171}
+.admin-footer{text-align:center;padding:20px;font-size:11px;color:rgba(255,255,255,.2)}
+</style>
+</head>
+<body>
+
+<!-- ======== 通常LP ======== -->
+<div id="lp-screen" class="wrap">
+  <div class="blog-header">
+    <div class="blog-name">ゆい の ゆるっとブログ</div>
+    <div class="blog-title">
+      <span>出会いアプリ、3つだけ</span><br>
+      <span>正直に使ってみた話</span>
+    </div>
+    <div class="blog-meta">
+      <span>2025.06</span><span class="dot">·</span>
+      <span>体験談</span><span class="dot">·</span>
+      <span>アフィリエイトあり</span>
+    </div>
+  </div>
+
+  <div class="body">
+    <p class="intro" id="lp-intro">友達に勧められてちょっとだけ触ってみた<br>そんな深く使ってないけど、正直な感想だけ残しとく</p>
+    <div class="intro-note">✏️ ちゃんとした比較とかじゃなくて<br>あくまで私個人の「なんとなく使った感じ」です</div>
+
+    <div class="section-label">使ってみたやつ</div>
+
+    <!-- カード1 -->
+    <div class="card pink">
+      <div class="card-num">01</div>
+      <div class="card-tags">
+        <span class="ctag p" id="tag1">人多め</span>
+        <span class="ctag g" id="tag1b">とりあえず試すなら</span>
+      </div>
+      <div class="card-name" id="name1">Pairs（ペアーズ）</div>
+      <div class="stars">
+        <span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s off">★</span>
+        <span class="slabel">4.0 / 使いやすさ</span>
+      </div>
+      <div class="card-body" id="body1">
+        <p>ここが一番ユーザー多かった<br>とにかく反応は来る</p>
+        <p>その分、ちょっと雑な人もいる感じだったから<br>ちゃんと選ばないと疲れるかも</p>
+        <p>でも最初に触るならここがいいと思う<br>慣れてない人でも使いやすい</p>
+      </div>
+      <a href="#" id="link1" class="btn pink-btn">Pairsを一応見てみる →</a>
+      <div class="handwrite">※ 無料登録できます</div>
+    </div>
+
+    <!-- カード2 -->
+    <div class="card mint">
+      <div class="card-num">02</div>
+      <div class="card-tags">
+        <span class="ctag m" id="tag2">落ち着いてる</span>
+        <span class="ctag g" id="tag2b">ちゃんと話したい人向け</span>
+      </div>
+      <div class="card-name" id="name2">with（ウィズ）</div>
+      <div class="stars">
+        <span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s off">★</span>
+        <span class="slabel">3.8 / 雰囲気</span>
+      </div>
+      <div class="card-body" id="body2">
+        <p>こっちはなんか全体的にゆるい雰囲気<br>ガツガツしてる人が少なくて使いやすかった</p>
+        <p>人数はPairsより少ない気がするけど<br>その分、ちゃんと話が続く感じがする</p>
+        <p>のんびり探したい人にはこっちの方が合いそう</p>
+      </div>
+      <a href="#" id="link2" class="btn mint-btn">withを見てみる →</a>
+      <div class="handwrite">※ 気が向いたときだけでOK</div>
+    </div>
+
+    <!-- カード3 -->
+    <div class="card yellow">
+      <div class="card-num">03</div>
+      <div class="card-tags">
+        <span class="ctag y" id="tag3">ちょい独特</span>
+        <span class="ctag g" id="tag3b">ハマる人はハマる</span>
+      </div>
+      <div class="card-name" id="name3">タップル</div>
+      <div class="stars">
+        <span class="s">★</span><span class="s">★</span><span class="s">★</span><span class="s off">★</span><span class="s off">★</span>
+        <span class="slabel">3.2 / 私的には様子見</span>
+      </div>
+      <div class="card-body" id="body3">
+        <p>ここはちょっと独特な雰囲気だった<br>スワイプ系で直感的に選べる感じ</p>
+        <p>合う人と合わない人ははっきり分かれそう<br>私はまだ様子見中</p>
+        <p>とりあえず置いとくので<br>気になった人だけどうぞ</p>
+      </div>
+      <a href="#" id="link3" class="btn gray-btn">タップルも一応 →</a>
+      <div class="handwrite">※ 合わなかったら無理しなくていい</div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-title">🌿 私なりのまとめ</div>
+      <div class="summary-row"><span>🌸</span><span>とりあえず始めたい → <b id="sum1">Pairs</b></span></div>
+      <div class="summary-row"><span>🍃</span><span>のんびり探したい → <b id="sum2">with</b></span></div>
+      <div class="summary-row"><span>🌼</span><span>直感で選びたい → <b id="sum3">タップル</b></span></div>
+    </div>
+
+    <p style="font-size:13.5px;color:#555;line-height:2" id="lp-outro">結局いまはPairsとwithを気分で使い分けてる<br>どれが正解かは人によるから、気になるやつだけでいいと思う</p>
+  </div>
+
+  <div class="footer-note">
+    <div class="footer-emoji">🌸</div>
+    ※このページにはアフィリエイトリンクが含まれます<br>
+    個人の感想です。効果・出会いを保証するものではありません
+  </div>
+</div>
+
+<!-- ======== 管理画面 ======== -->
+<div id="admin-screen">
+  <div class="admin-header">
+    <h2>🌸 管理画面</h2>
+    <p>アプリ名・説明文・リンクを編集できます</p>
+  </div>
+  <div class="admin-body">
+
+    <div class="admin-note">
+      💡 編集して「保存」を押すと <strong>GitHubが自動で更新</strong> されます<br>
+      📱 スマホからも <strong>URL末尾に ?admin=true</strong> でアクセスできます
+    </div>
+
+    <!-- GitHubトークン -->
+    <div class="token-section">
+      <h3>🔑 GitHubトークン設定</h3>
+      <p>初回だけ必要です。入力後は保存されます。<br>GitHubの Settings → Developer settings → Personal access tokens で取得してください。</p>
+      <input type="password" id="gh-token" class="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      <br>
+      <button class="token-save-btn" onclick="saveToken()">このブラウザに保存する</button>
+      <div id="token-msg" style="font-size:12px;color:#6ee7b7;margin-top:6px"></div>
+    </div>
+
+    <!-- カード1編集 -->
+    <div class="admin-card">
+      <div class="admin-card-title">📱 アプリ01の編集</div>
+      <div class="admin-field"><label>アプリ名</label><input type="text" id="a-name1" placeholder="例：Pairs（ペアーズ）"></div>
+      <div class="admin-field"><label>タグ①</label><input type="text" id="a-tag1" placeholder="例：人多め"></div>
+      <div class="admin-field"><label>タグ②</label><input type="text" id="a-tag1b" placeholder="例：とりあえず試すなら"></div>
+      <div class="admin-field"><label>説明文</label><textarea id="a-body1" rows="4" placeholder="説明を入力"></textarea></div>
+      <div class="admin-field"><label>アフィリエイトURL</label><input type="url" id="a-link1" placeholder="https://..."></div>
+      <div class="admin-field"><label>まとめの一言</label><input type="text" id="a-sum1" placeholder="例：Pairs"></div>
+    </div>
+
+    <!-- カード2編集 -->
+    <div class="admin-card">
+      <div class="admin-card-title">📱 アプリ02の編集</div>
+      <div class="admin-field"><label>アプリ名</label><input type="text" id="a-name2" placeholder="例：with（ウィズ）"></div>
+      <div class="admin-field"><label>タグ①</label><input type="text" id="a-tag2" placeholder="例：落ち着いてる"></div>
+      <div class="admin-field"><label>タグ②</label><input type="text" id="a-tag2b" placeholder="例：ちゃんと話したい人向け"></div>
+      <div class="admin-field"><label>説明文</label><textarea id="a-body2" rows="4" placeholder="説明を入力"></textarea></div>
+      <div class="admin-field"><label>アフィリエイトURL</label><input type="url" id="a-link2" placeholder="https://..."></div>
+      <div class="admin-field"><label>まとめの一言</label><input type="text" id="a-sum2" placeholder="例：with"></div>
+    </div>
+
+    <!-- カード3編集 -->
+    <div class="admin-card">
+      <div class="admin-card-title">📱 アプリ03の編集</div>
+      <div class="admin-field"><label>アプリ名</label><input type="text" id="a-name3" placeholder="例：タップル"></div>
+      <div class="admin-field"><label>タグ①</label><input type="text" id="a-tag3" placeholder="例：ちょい独特"></div>
+      <div class="admin-field"><label>タグ②</label><input type="text" id="a-tag3b" placeholder="例：ハマる人はハマる"></div>
+      <div class="admin-field"><label>説明文</label><textarea id="a-body3" rows="4" placeholder="説明を入力"></textarea></div>
+      <div class="admin-field"><label>アフィリエイトURL</label><input type="url" id="a-link3" placeholder="https://..."></div>
+      <div class="admin-field"><label>まとめの一言</label><input type="text" id="a-sum3" placeholder="例：タップル"></div>
+    </div>
+
+    <button class="admin-save-btn" onclick="saveToGitHub()">💾 GitHubに保存して反映する</button>
+    <div id="admin-msg" class="admin-msg"></div>
+
+  </div>
+  <div class="admin-footer">管理画面 · matching-lp</div>
+</div>
+
+<script>
+// ============================================================
+//  設定（★ここだけ変更が必要★）
+// ============================================================
+const GH_USER = 'Yamato72727';   // 例: yamato0727
+const GH_REPO = 'review-lp';
+const GH_FILE = 'index.html';
+const ADMIN_PASS = '0727';
+
+// ============================================================
+//  起動時処理
+// ============================================================
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(location.search);
+  if (params.has('admin')) {
+    const pass = prompt('パスワードを入力してください');
+    if (pass !== ADMIN_PASS) {
+      alert('パスワードが違います');
+      location.href = location.pathname;
+      return;
+    }
+    document.getElementById('lp-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    loadAdminFields();
+    loadSavedToken();
+  }
+});
+
+// ============================================================
+//  トークン保存・読み込み
+// ============================================================
+function saveToken() {
+  const t = document.getElementById('gh-token').value.trim();
+  if (!t) return;
+  localStorage.setItem('gh_token', t);
+  document.getElementById('token-msg').textContent = '✅ 保存しました';
+}
+function loadSavedToken() {
+  const t = localStorage.getItem('gh_token');
+  if (t) {
+    document.getElementById('gh-token').value = t;
+    document.getElementById('token-msg').textContent = '✅ 保存済みトークンを読み込みました';
+  }
+}
+
+// ============================================================
+//  管理フィールドに現在の値を読み込む
+// ============================================================
+function loadAdminFields() {
+  const fields = [
+    ['name1','name2','name3'],
+    ['tag1','tag1b','tag2','tag2b','tag3','tag3b'],
+    ['sum1','sum2','sum3']
+  ];
+  // テキスト系
+  ['name1','name2','name3','tag1','tag1b','tag2','tag2b','tag3','tag3b','sum1','sum2','sum3'].forEach(id => {
+    const el = document.getElementById(id);
+    const inp = document.getElementById('a-' + id);
+    if (el && inp) inp.value = el.textContent;
+  });
+  // 説明文
+  [1,2,3].forEach(n => {
+    const el = document.getElementById('body' + n);
+    const inp = document.getElementById('a-body' + n);
+    if (el && inp) inp.value = el.innerText;
+  });
+  // リンク
+  [1,2,3].forEach(n => {
+    const el = document.getElementById('link' + n);
+    const inp = document.getElementById('a-link' + n);
+    if (el && inp) inp.value = el.getAttribute('href') === '#' ? '' : el.getAttribute('href');
+  });
+}
+
+// ============================================================
+//  GitHubに保存
+// ============================================================
+async function saveToGitHub() {
+  const msg = document.getElementById('admin-msg');
+  msg.className = 'admin-msg';
+  msg.textContent = '⏳ 保存中...';
+
+  const token = document.getElementById('gh-token').value.trim();
+  if (!token) { msg.textContent = '❌ GitHubトークンを入力してください'; msg.classList.add('admin-err'); return; }
+  if (!GH_USER || GH_USER === 'ここにGitHubユーザー名') { msg.textContent = '❌ GH_USERを設定してください'; msg.classList.add('admin-err'); return; }
+
+  // 現在のHTMLを取得
+  const getRes = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FILE}`, {
+    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!getRes.ok) { msg.textContent = '❌ ファイルの取得に失敗しました（トークンやユーザー名を確認）'; msg.classList.add('admin-err'); return; }
+  const fileData = await getRes.json();
+  const sha = fileData.sha;
+
+  // HTMLを書き換え
+  let html = atob(fileData.content.replace(/\n/g,''));
+
+  html = replaceInnerText(html, 'id="name1"', document.getElementById('a-name1').value);
+  html = replaceInnerText(html, 'id="name2"', document.getElementById('a-name2').value);
+  html = replaceInnerText(html, 'id="name3"', document.getElementById('a-name3').value);
+  html = replaceInnerText(html, 'id="tag1"',  document.getElementById('a-tag1').value);
+  html = replaceInnerText(html, 'id="tag1b"', document.getElementById('a-tag1b').value);
+  html = replaceInnerText(html, 'id="tag2"',  document.getElementById('a-tag2').value);
+  html = replaceInnerText(html, 'id="tag2b"', document.getElementById('a-tag2b').value);
+  html = replaceInnerText(html, 'id="tag3"',  document.getElementById('a-tag3').value);
+  html = replaceInnerText(html, 'id="tag3b"', document.getElementById('a-tag3b').value);
+  html = replaceInnerText(html, 'id="sum1"',  document.getElementById('a-sum1').value);
+  html = replaceInnerText(html, 'id="sum2"',  document.getElementById('a-sum2').value);
+  html = replaceInnerText(html, 'id="sum3"',  document.getElementById('a-sum3').value);
+  html = replaceBodyText(html, 'id="body1"',  document.getElementById('a-body1').value);
+  html = replaceBodyText(html, 'id="body2"',  document.getElementById('a-body2').value);
+  html = replaceBodyText(html, 'id="body3"',  document.getElementById('a-body3').value);
+  html = replaceHref(html, 'id="link1"', document.getElementById('a-link1').value || '#');
+  html = replaceHref(html, 'id="link2"', document.getElementById('a-link2').value || '#');
+  html = replaceHref(html, 'id="link3"', document.getElementById('a-link3').value || '#');
+
+  // GitHubにPUT
+  const putRes = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FILE}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: 'LP更新 ' + new Date().toLocaleString('ja-JP'),
+      content: btoa(unescape(encodeURIComponent(html))),
+      sha: sha
+    })
+  });
+
+  if (putRes.ok) {
+    msg.textContent = '✅ 保存しました！1〜2分後にサイトに反映されます';
+  } else {
+    const err = await putRes.json();
+    msg.textContent = '❌ 保存に失敗: ' + (err.message || '不明なエラー');
+    msg.classList.add('admin-err');
+  }
+}
+
+// ============================================================
+//  HTML書き換えヘルパー
+// ============================================================
+function replaceInnerText(html, idAttr, newText) {
+  const re = new RegExp(`(<[^>]+${idAttr}[^>]*>)[^<]*(</[^>]+>)`, 'i');
+  return html.replace(re, `$1${escHtml(newText)}$2`);
+}
+function replaceBodyText(html, idAttr, newText) {
+  // card-body全体を<p>タグで置き換え
+  const re = new RegExp(`(<div class="card-body" ${idAttr}>)[\\s\\S]*?(</div>)`, 'i');
+  const paragraphs = newText.split('\n').filter(l => l.trim()).map(l => `<p>${escHtml(l)}</p>`).join('\n        ');
+  return html.replace(re, `$1\n        ${paragraphs}\n      $2`);
+}
+function replaceHref(html, idAttr, newHref) {
+  const re = new RegExp(`(<a href=")[^"]*(" ${idAttr})`, 'i');
+  return html.replace(re, `$1${newHref}$2`);
+}
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
